@@ -15,9 +15,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.djcao</groupId>
-	<artifactId>boot</artifactId>
+	<artifactId>sneaker</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>boot</name>
+	<name>sneaker</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
