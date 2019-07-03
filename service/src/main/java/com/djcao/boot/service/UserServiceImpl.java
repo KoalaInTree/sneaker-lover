@@ -34,8 +34,7 @@ public class UserServiceImpl implements UserService {
         String account = so.getAccount();
         String password = so.getPassword();
         PackageResult<User> packageResult = new PackageResult<>();
-        User dbUser = userRepository.findByPhoneNumOrEmail(
-            Integer.valueOf(StringUtils.isBlank(account) ? "0" : account), account);
+        User dbUser = userRepository.findByPhoneNumOrEmail(account);
         //to register
         if (dbUser == null){
             if (StringUtils.isBlank(account) || StringUtils.isBlank(password)){

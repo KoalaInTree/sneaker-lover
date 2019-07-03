@@ -10,6 +10,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface UserRepository extends CrudRepository<User,Long> {
 
-    @Query(value = "select * from user where phone_num = ?1 or email = ?2 limit 1",nativeQuery = true)
-    User findByPhoneNumOrEmail(Integer phoneNumber,String email);
+    @Query(value = "select * from user where account = ?1 limit 1",nativeQuery = true)
+    User findByPhoneNumOrEmail(String account);
 }
