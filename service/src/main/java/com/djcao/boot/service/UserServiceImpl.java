@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public PackageResult<User> findById(Long id) {
         PackageResult<User> packageResult = PackageResult.success();
-        packageResult.setSingle(userRepository.findById(id).orElse(new User()));
+        packageResult.setResult(userRepository.findById(id).orElse(new User()));
         return packageResult;
     }
 
@@ -50,10 +50,10 @@ public class UserServiceImpl implements UserService {
             dbUser.setPasswd(password.replace(" ",""));
             dbUser.setPhoneNum(Integer.valueOf(account));
             dbUser = userRepository.save(dbUser);
-            return packageResult.setSuccess(Boolean.TRUE).setSingle(dbUser);
+            return packageResult.setSuccess(Boolean.TRUE).setResult(dbUser);
         }else {
             if (dbUser.getPasswd().equals(password)){
-                packageResult.setSuccess(Boolean.TRUE).setSingle(dbUser);
+                packageResult.setSuccess(Boolean.TRUE).setResult(dbUser);
             }else {
                 packageResult.setSuccess(Boolean.FALSE).setMessage("密码错误");
             }

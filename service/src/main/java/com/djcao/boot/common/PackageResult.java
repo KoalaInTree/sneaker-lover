@@ -16,30 +16,30 @@ public class PackageResult<T> {
 
     private boolean success;
 
+    private int code;
+
     private String message;
 
-    private T single;
-
-    private List<T> many;
+    private T result;
 
     private int pageNo = 0;
 
     private int pageSize = 30;
 
-    private static PackageResult create(boolean success){
-        return create(success, StringUtils.EMPTY);
+    private static PackageResult create(boolean success,int code){
+        return create(success, StringUtils.EMPTY,code);
     }
 
-    private static PackageResult create(boolean success, String message){
-        return new PackageResult().setSuccess(success).setMessage(message);
+    private static PackageResult create(boolean success, String message,int code){
+        return new PackageResult().setSuccess(success).setMessage(message).setCode(code);
     }
 
     public static PackageResult success(){
-        return create(Boolean.TRUE);
+        return create(Boolean.TRUE,CodeDef.SUCCESS);
     }
 
     public static PackageResult error(String message){
-        return create(Boolean.FALSE,message);
+        return create(Boolean.FALSE,message,CodeDef.ERROR);
     }
 
     public boolean isSuccess() {
@@ -60,23 +60,6 @@ public class PackageResult<T> {
         return this;
     }
 
-    public T getSingle() {
-        return single;
-    }
-
-    public PackageResult setSingle(T single) {
-        this.single = single;
-        return this;
-    }
-
-    public List<T> getMany() {
-        return many;
-    }
-
-    public PackageResult setMany(List<T> many) {
-        this.many = many;
-        return this;
-    }
 
     public int getPageNo() {
         return pageNo;
@@ -93,6 +76,24 @@ public class PackageResult<T> {
 
     public PackageResult setPageSize(int pageSize) {
         this.pageSize = pageSize;
+        return this;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public PackageResult setCode(int code) {
+        this.code = code;
+        return this;
+    }
+
+    public T getResult() {
+        return result;
+    }
+
+    public PackageResult setResult(T result) {
+        this.result = result;
         return this;
     }
 }
