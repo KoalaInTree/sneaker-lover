@@ -35,6 +35,9 @@
             <basic name="phoneNum">
                 <column name="phone_num" nullable="false" precision="11"/>
             </basic>
+            <basic name="account">
+                <column name="account" nullable="false"/>
+            </basic>
         </attributes>
     </entity>
 </entity-mappings>

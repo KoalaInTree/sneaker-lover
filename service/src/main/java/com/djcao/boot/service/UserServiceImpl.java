@@ -1,6 +1,7 @@
 package com.djcao.boot.service;
 
 import java.util.Date;
+import java.util.Optional;
 
 import com.djcao.boot.common.PackageResult;
 import com.djcao.boot.repository.User;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
         String account = so.getAccount();
         String password = so.getPassword();
         PackageResult<User> packageResult = new PackageResult<>();
-        User dbUser = userRepository.findByPhoneNumOrEmail(account);
+        User dbUser = userRepository.findByAccount(account);
         //to register
         if (dbUser == null){
             if (StringUtils.isBlank(account) || StringUtils.isBlank(password)){
@@ -59,5 +60,19 @@ public class UserServiceImpl implements UserService {
             }
             return packageResult;
         }
+    }
+
+    public PackageResult<User> updateUserInfo(User user){
+        Optional<User> optional = userRepository.findById(user.getId());
+        if (!optional.isPresent()){
+            return PackageResult.error("用户不存在");
+        }
+        User dbUser = optional.get();
+        dbUser.setUpdateTime(new Date());
+        dbUser.setPasswd(user.getPasswd());
+        dbUser.setPhoneNum(user.getPhoneNum());
+        dbUser.setEmail(user.getEmail());
+        User save = userRepository.save(user);
+        return PackageResult.success(save);
     }
 }

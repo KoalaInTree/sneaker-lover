@@ -24,6 +24,7 @@ public class User {
     private String ext;
     private String email;
     private Integer phoneNum;
+    private String account;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -159,5 +160,15 @@ public class User {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phoneNum != null ? phoneNum.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "account", nullable = true, length = 255)
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 }

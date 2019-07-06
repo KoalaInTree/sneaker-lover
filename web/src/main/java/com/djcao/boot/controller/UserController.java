@@ -43,4 +43,11 @@ public class UserController {
         return userService.login(so);
     }
 
+    @ApiOperation(value = "更新用户信息")
+    @PostMapping("update")
+    @ResponseBody
+    public PackageResult<User> update(@RequestBody User user){
+        return userService.updateUserInfo(user);
+    }
+
 }

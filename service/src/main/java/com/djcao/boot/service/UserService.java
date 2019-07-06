@@ -15,6 +15,10 @@ public interface UserService {
     PackageResult<User> findById(Long id);
 
     //用于登录
-  PackageResult<User> login(UserSo so);
+    PackageResult<User> login(UserSo so);
+
+
+    //更新用户信息
+    PackageResult<User> updateUserInfo(User user);
 
 }
